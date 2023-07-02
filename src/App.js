@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoList from "./todo-list/main.jsx"
+import PomodoroTimer from "./pomo-timer/main.jsx"
+import { useState } from "react"
 
-function App() {
+function App( {todos} ) {
+  const [items, setItems] = useState(todos)
+
+  const newTodo = async (data) => {
+    setItems( (prev) => [...prev, data])
+    // write to the thing by calling comms
+    window.comms.saveData(data, "todo") 
+  }
+
+  const removeTodo = (index) => {
+    setItems( (prev) => { 
+      let newItems = [...prev] 
+      newItems.splice(index, 1)
+      return newItems 
+    } )
+    window.comms.removeData(index, "todo")
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoList todos={ items } remove={ removeTodo } newTodo={ newTodo }/>
+      <PomodoroTimer workTime={ 10 } breakTime={ 5 } />
     </div>
   );
 }
