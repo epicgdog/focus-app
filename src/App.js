@@ -1,9 +1,11 @@
 import TodoList from "./todo-list/main.jsx"
 import PomodoroTimer from "./pomo-timer/main.jsx"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 
-function App( {todos} ) {
+function App( {todos, workTime, breakTime} ) {
   const [items, setItems] = useState(todos)
+  const [wt, setWT] = useState(workTime)
+  const [bt, setBT] = useState(breakTime)
 
   const newTodo = async (data) => {
     setItems( (prev) => [...prev, data])
@@ -19,10 +21,18 @@ function App( {todos} ) {
     } )
     window.comms.removeData(index, "todo")
   }
+
+  const saveTimer = async (data) => {
+      const arr = data.split(" ")
+      setWT(arr[0])
+      setBT(arr[1])
+
+      window.comms.saveData(data, "timer")
+  }
   return (
     <div className="App">
       <TodoList todos={ items } remove={ removeTodo } newTodo={ newTodo }/>
-      <PomodoroTimer workTime={ 10 } breakTime={ 5 } />
+      <PomodoroTimer workTime={ wt } breakTime={ bt } save={ saveTimer } />
     </div>
   );
 }
