@@ -58,18 +58,20 @@ app.whenReady().then(() => {
       if (component == "todo"){
         fs.appendFile(todoData, data + "\n", (error) => { error ? console.error(error) : console.log("wrote successfully!")})
       } else if (component == "timer") {
-        fs.appendFile(timerData, data + "\n", (error) => { error ? console.error(error) : console.log("wrote successfully!")})
+        fs.writeFileSync(timerData, data, (error) => { error ? console.error(error) : console.log("wrote successfully!")})
       }
     })
     ipcMain.handle("getData", async (_, component ) => {
       if (component == "todo"){
         return await readFile(todoData)
+      } else if (component == "timer"){
+        return await readFile(timerData)
       }
     })
 
     ipcMain.handle("removeData", async (_, index, component) => {
       if (component == "todo") {
-        return await deleteLine(index)
+        return await deleteLine(index, todoData)
       }
     })
     createWindow()
