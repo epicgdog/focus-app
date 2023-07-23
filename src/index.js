@@ -4,6 +4,7 @@ import App from './App';
 
 const pastTodo = await window.comms.getData("todo")
 const pastTimer = await window.comms.getData("timer")
+const pastPlaylist = await window.comms.getData("playlist")
 let workTime = 60
 let breakTime = 5
 if (pastTimer && pastTimer.length > 0){
@@ -12,9 +13,10 @@ if (pastTimer && pastTimer.length > 0){
   workTime = arr[0]
   breakTime = arr[1]
 }
+console.log(pastPlaylist)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App todos={pastTodo} workTime={workTime} breakTime={breakTime}/>
+    <App todos={pastTodo} workTime={workTime} breakTime={breakTime} playlist={pastPlaylist}/>
   </React.StrictMode>
 );

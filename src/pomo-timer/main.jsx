@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { atom, useAtom } from "jotai"
 
-
 export default function PomodoroTimer({ workTime, breakTime, save }){
     const [clock, setClock] = useState(workTime)
     const [clockMode, setClockMode] = useState("work")
@@ -30,6 +29,7 @@ export default function PomodoroTimer({ workTime, breakTime, save }){
 
     return(
         <>
+        <div className={"pomo"}>
             <h1> Pomodoro</h1>
             <h2> {clock} {clockMode}</h2>
             <h3> Work: {workTime} Break: {breakTime}</h3>
@@ -61,6 +61,7 @@ export default function PomodoroTimer({ workTime, breakTime, save }){
                     }}/> 
                 </label>
             </div>
+        </div>
         </>
     )
 

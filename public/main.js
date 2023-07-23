@@ -1,9 +1,10 @@
-const { app, BrowserWindow,  ipcMain } = require("electron")
+const { app, BrowserWindow,  ipcMain, dialog } = require("electron")
 const path = require("path")
 const fs = require('fs')
 const readline = require("readline")
 const todoData = "./public/todoData.txt"
 const timerData = "./public/timerData.txt"
+const playlistData = "./public/playlistData.txt"
 
 const createWindow = () => {
     const win = new BrowserWindow({ 
@@ -66,13 +67,27 @@ app.whenReady().then(() => {
         return await readFile(todoData)
       } else if (component == "timer"){
         return await readFile(timerData)
+      } else if (component == "playlist"){
+        return await readFile(playlistData)
       }
     })
 
     ipcMain.handle("removeData", async (_, index, component) => {
       if (component == "todo") {
         return await deleteLine(index, todoData)
+      } else if (component == "playlist"){
+        return await deleteLine(index, playlistData)
       }
+    })
+
+    ipcMain.handle("openFileDialog", async () => {
+      const item = dialog.showOpenDialogSync({ filters: [{ name: "Music", extensions: ["mp3", "m4a"]}], properties: ["openFile", "multiSelections"] })
+      if (item.length < 1){return}
+      for (const i in item){
+        fs.appendFile(playlistData, item[i] +  "\n", (error) => { error ? console.error(error) : console.log("wrote successfully!")})
+        console.log(item[i])
+      }
+      return item
     })
     createWindow()
 
