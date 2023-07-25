@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react"
 import { atom, useAtom } from "jotai"
+import { wt, bt } from "../index.js"
 
-export default function PomodoroTimer({ workTime, breakTime, save }){
+export default function PomodoroTimer(){
+    const [workTime, setWorkTime] = useAtom(wt)
+    const [breakTime, setBreakTime] = useAtom(bt)
     const [clock, setClock] = useState(workTime)
     const [clockMode, setClockMode] = useState("work")
     const [pause, setPause] = useState(true)
@@ -11,7 +14,6 @@ export default function PomodoroTimer({ workTime, breakTime, save }){
         if (pause) { return;}
         const timer = setInterval(() => {
             setClock( (prev) => prev-1)
-
         }, 1000)
         return () => { clearInterval(timer) }
     }, [pause])
@@ -40,7 +42,7 @@ export default function PomodoroTimer({ workTime, breakTime, save }){
                     Study Time 
                     <input type="text" onKeyDown={(event) => { 
                         if (event.key === "Enter" && parseInt(event.target.value)){
-                            save( event.target.value + " " + breakTime )
+                            setWorkTime( event.target.value )
                             if ( clockMode === "work" ){
                                 setClock( parseInt(event.target.value) )
                             }
@@ -52,7 +54,7 @@ export default function PomodoroTimer({ workTime, breakTime, save }){
                     Break Time 
                     <input type="text" onKeyDown={(event) => { 
                         if (event.key === "Enter" && parseInt(event.target.value)){
-                            save( workTime + " " + event.target.value )
+                            setBreakTime( event.target.value )
                             if ( clockMode === "break" ){
                                 setClock( parseInt(event.target.value) )
                             }

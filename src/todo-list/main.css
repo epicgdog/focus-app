@@ -1,18 +1,19 @@
 div .todo{
     background-color: beige;
-    width: 30%;
+    width: 30vw;
     position: absolute;
-    top: 50%;
+    top: 30vh;
+    left: 70vw;
 
 }
 
 div .pomo{
     background-color: rgb(155, 232, 255);
-    width: 75%;
+    width: 70vw;
     margin: auto;   
     position: absolute;
-    top: 25%;
-    left: 12.5%;
+    top: 0;
+    left: 15vw;
 }
 
 div .pomo h1{
@@ -26,4 +27,13 @@ div .pomo h3{
 }
 div .pomo button{
     margin: auto;
+}
+
+
+div .pl{
+    background-color: rgb(207, 199, 255);
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 30vh;
 }

@@ -1,11 +1,16 @@
 import {useState} from "react"
 import Item from "./item.jsx"
 import "./main.css"
+import { useAtom } from "jotai"
+import { savedTodos } from "../index.js"
 
-export default function Todolist( { todos, remove, newTodo } ){
+
+export default function Todolist( ){
     const [input, setInput] = useState("")
+    const [todos, setTodos] = useAtom(savedTodos)
     const createNewTodo = (event) => {
-        newTodo(input); event.target.value=""
+        setTodos( (prev) => [...prev, event.target.value] )
+        event.target.value=""
     }
     return (
         <>
@@ -14,19 +19,19 @@ export default function Todolist( { todos, remove, newTodo } ){
             <ul>
                 { 
                     todos.map((val, index) => (
-                        <Item text={val} key={index} index={index} remove={remove}/>
+                        <Item text={val} key={index} index={index}/>
                     ))
                 }
             </ul>
             <input type="text"  
                 onKeyDown={ (event) => {
-                    (event.key != "Enter") ? setInput(event.target.value) : createNewTodo(event)
+                    if (event.key != "Enter") {setInput(event.target.value)}
                 }} 
                 onChange={ (event) => {
                     setInput(event.target.value)   
                 }}
             /> 
-            <button onClick={ () => { newTodo(input) } }> + </button>
+            <button onClick={ () => {  } }> + </button>
             </div>
         </>
     )
