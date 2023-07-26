@@ -50,7 +50,7 @@ app.whenReady().then(() => {
 
     ipcMain.handle("openFileDialog", async () => {
       const item = dialog.showOpenDialogSync({ filters: [{ name: "Music", extensions: ["mp3", "m4a"]}], properties: ["openFile", "multiSelections"] })
-      if (!item || item.length < 1){ return }
+      if (!item || item.length < 1){ return [] }
       return item
     })
     ipcMain.on("dataToSave", (_, data) => {

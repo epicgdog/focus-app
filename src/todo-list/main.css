@@ -1,11 +1,11 @@
 div.todo{
-    min-width: 200px;
     max-width: 600px;
     background-color: rgb(59, 59, 59);
     color: white;
     padding-bottom: 3rem;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: inline-block;
+    width: 30vw;
 }
 
 div.todo h1{
@@ -35,7 +35,11 @@ div.items{
 div.items p{
     margin: 0;
     margin-left: 2px;
-    display:  inline-block;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 75%;
 }
 
 div.items button{
