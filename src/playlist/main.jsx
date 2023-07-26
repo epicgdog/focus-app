@@ -2,6 +2,7 @@ import Track from "./track.jsx"
 import { useState, useRef, useEffect,useMemo } from "react"
 import { useAtom } from "jotai"
 import { playlist } from "../index.js"
+import "./main.css"
 
 export default function Playlist({ openFileDialog }){
     const [pl, setPl] = useAtom(playlist)
@@ -37,7 +38,7 @@ export default function Playlist({ openFileDialog }){
                 ))
             }
             </ul>
-            <button onClick={() => openFileDialog(setPl) }> Add Music to Playlist</button>
+            <button className="add-tracks" onClick={() => openFileDialog(setPl) }> Add </button>
             {/*val.length > 0 ? <Track music={val} key={index} index={index} remove={handle}/> : <li></li>*/}
         </div>
         </>

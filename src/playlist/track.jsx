@@ -1,5 +1,4 @@
 
-import "./track.css"
 import { useAtom } from "jotai"
 import { playlist } from "../index.js"
 
@@ -8,7 +7,7 @@ export default function Track( { music, index } ){
     const [pl, setPl] = useAtom(playlist)
     return(
     <>
-        <div>
+        <div className="track">
             <p> {music.split("\\").pop()} </p>
             <button onClick={ () => {
                 setPl( (prev) => {

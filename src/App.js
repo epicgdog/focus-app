@@ -3,7 +3,14 @@ import PomodoroTimer from "./pomo-timer/main.jsx"
 import Playlist from "./playlist/main.jsx"
 import { useAtom } from "jotai"
 import { playlist, savedTodos, wt, bt } from "./index.js"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+
+let updatedPlaylist, updatedTodos, updatedWt, updatedBt
+// heres how we save the data actual
+window.comms.onSaveData((event) => {
+  event.sender.send("dataToSave", {pl : updatedPlaylist, todos : updatedTodos, workTime : updatedWt, breakTime : updatedBt})
+})
+
 
 function App() {
   // getting all the data to be saved
@@ -17,16 +24,13 @@ function App() {
   // SOOO the values that it will send will be the FIRST values before any changes are made by the user
   // SOOOO values weren't going to be saved 🤯🤯🤯🤯
 
-  // solution: one useEffect, one function
-
-  // will basically listen for the saveData; only run ONCE because u don't want to connect to the same thing
-  // every time u make a change
-  // now will just call function and should have updated values
+  // solution: one useEffect to update data to global variables which will be used to actually save the stuff
+  // the actual connection to the save data will be outside so only connected ONCE
   useEffect(() => {
-    window.comms.onSaveData((event) => {
-      console.log("sent!")
-      event.sender.sendSync("dataToSave", {pl : pl, todos : todos, workTime : workTime, breakTime : breakTime})
-    })
+    updatedPlaylist = pl
+    updatedTodos = todos
+    updatedWt = workTime
+    updatedBt = breakTime
   }, [pl, todos, workTime, breakTime])
 
   const openFileDialog = async (f) => {
@@ -35,8 +39,8 @@ function App() {
   }
   return (
     <div className="App">
-        <TodoList />
         <PomodoroTimer />
+        <TodoList />
         <Playlist openFileDialog={openFileDialog} />
     </div>
   );
