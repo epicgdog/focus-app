@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { useRef } from "react"
 import { useAtom } from "jotai"
 import { savedTodos } from "../index.js"
-export default function TodoItem( { text, remove, key, index } ){
+export default function TodoItem( { text, index } ){
     const [todos, setTodos] = useAtom(savedTodos)
     return (
         <>
-            <div>
+            <div className="items">
                 <label>
                     <input type="checkbox" onChange={ () => {} } />
-                    {text + String(index)}
+                    <p>{text}</p>
                 </label>
                 <button onClick={ () => {
                     setTodos( (prev) => {

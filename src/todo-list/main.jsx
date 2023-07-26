@@ -16,22 +16,20 @@ export default function Todolist( ){
         <>
             <div className="todo">
             <h1> To-Do </h1>
-            <ul>
+            <div className="todo-container">
+                
                 { 
                     todos.map((val, index) => (
                         <Item text={val} key={index} index={index}/>
                     ))
                 }
-            </ul>
-            <input type="text"  
-                onKeyDown={ (event) => {
-                    if (event.key != "Enter") {setInput(event.target.value)}
-                }} 
-                onChange={ (event) => {
-                    setInput(event.target.value)   
-                }}
-            /> 
-            <button onClick={ () => {  } }> + </button>
+                <input className="todo-input"type="text"  
+                    onKeyDown={ (event) => {
+                        if (event.key != "Enter") { setInput(event.target.value) } else { createNewTodo(event) }
+                    }} 
+                    onChange={ (event) => { setInput(event.target.value) }} 
+                /> 
+            </div>
             </div>
         </>
     )

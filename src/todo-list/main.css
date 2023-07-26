@@ -1,39 +1,54 @@
-div .todo{
-    background-color: beige;
-    width: 30vw;
-    position: absolute;
-    top: 30vh;
-    left: 70vw;
-
+div.todo{
+    max-width: 600px;
+    background-color: rgb(59, 59, 59);
+    color: white;
+    padding-bottom: 3rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-div .pomo{
-    background-color: rgb(155, 232, 255);
-    width: 70vw;
-    margin: auto;   
-    position: absolute;
-    top: 0;
-    left: 15vw;
+div.todo h1{
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-div .pomo h1{
-    text-align: center;
-}
-div .pomo h2{
-    text-align: center;
-}
-div .pomo h3{
-    text-align: center;
-}
-div .pomo button{
+div.todo-container {
+    background-color: rgb(99, 99, 99);
+    width: 75%;
     margin: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
+.todo-input {
+    padding: 0.25rem 0;
+    border: none;
+    width: 100%;
+    background-color: rgb(236, 236, 236);
+}
 
-div .pl{
-    background-color: rgb(207, 199, 255);
-    display: inline-block;
-    position: absolute;
-    left: 0;
-    top: 30vh;
+div.items{
+    padding: 0.75rem;
+    font-size: 1.075rem;
+}
+
+div.items p{
+    margin: 0;
+    margin-left: 2px;
+    display:  inline-block;
+}
+
+div.items button{
+    text-align: center;
+    float: right;
+    background: none;
+    border: 1px solid rgb(255, 104, 104);
+    border-radius: 100px;
+    color: rgb(255, 104, 104);
+    text-decoration: bold;
+    font-size: 0.75rem;
+}
+
+div.items button:hover{
+    background-color: rgb(255, 104, 104);
+    color: white;
 }
