@@ -1,22 +1,22 @@
+
 div.pomo{
     max-width: 600px;
     background-color: rgb(59, 59, 59);
     color: white;
-    padding-bottom: 3rem;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: auto;
-    padding: 1rem;
+    margin: 0;
 }
 
 div.pomo h1{
     text-align: center;
     font-size: 7rem;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 div.pomo h3{
-    position: absolute;
+    position: fixed;
     top: 0;
+    transform: translate(0, 1rem);
 }
 
 div.pomo .startButton{

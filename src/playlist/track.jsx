@@ -1,10 +1,10 @@
 
-import { useAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { playlist } from "../index.js"
 
 
 export default function Track( { music, index, current, looped } ){
-    const [pl, setPl] = useAtom(playlist)
+    const setPl = useSetAtom(playlist)
 
     const currentStyle = {
         backgroundColor: "white",
@@ -19,9 +19,8 @@ export default function Track( { music, index, current, looped } ){
             <p style={index === current ? currentStyle : {}}> {music.split("\\").pop().replace(".mp3", "")} </p>
             <button onClick={ () => {
                 setPl( (prev) => {
-                    const arr = [...prev]
-                    arr.splice(index, 1)
-                    return arr
+                    prev.splice(index, 1)
+                    return prev
                 })
 
             }  }> X </button>

@@ -1,8 +1,8 @@
 import { useRef } from "react"
 import { useAtom } from "jotai"
-import { savedTodos } from "../index.js"
+import { todos } from "../index.js"
 export default function TodoItem( { text, index } ){
-    const [todos, setTodos] = useAtom(savedTodos)
+    const [t, setT] = useAtom(todos)
     return (
         <>
             <div className="items">
@@ -11,10 +11,9 @@ export default function TodoItem( { text, index } ){
                     <p>{text}</p>
                 </label>
                 <button onClick={ () => {
-                    setTodos( (prev) => {
-                        const arr = [...prev]
-                        arr.splice(index, 1)
-                        return arr
+                    setT( (prev) => {
+                        prev.splice(index, 1)
+                        return prev
                     } )
                 } }> X </button>
             </div>

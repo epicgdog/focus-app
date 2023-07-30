@@ -1,32 +1,12 @@
 const { app, BrowserWindow,  ipcMain, dialog, Menu } = require("electron")
 const path = require("path")
 const fs = require('fs')
-const readline = require("readline")
 
 // storing all data in a .txt file
 // first row is todos
 // second is timer
 // third is the playlist
 const database = "./public/database.txt"
-
-const readFile = (file) => {
-  return new Promise( (resolve, reject) => {
-    const lines = []
-    const lineReader = readline.createInterface({
-      input: fs.createReadStream(file)
-    })
-    lineReader.on("line", (line) => {
-      lines.push(line)
-    })
-    lineReader.on("close", () => {
-      resolve(lines)
-    })
-    lineReader.on("error", (error) => {
-      reject(error)
-    })
-  } )
-}
-
 app.whenReady().then(() => {
     console.log("ready!")
     const win = new BrowserWindow({ 
@@ -44,8 +24,11 @@ app.whenReady().then(() => {
       e.preventDefault()
       win.webContents.send("saveAllData")
     })
-    ipcMain.handle("getData", async () => {
-      return await readFile(database)
+
+    ipcMain.handle("getData", () => {
+      return new Promise( (resolve, reject) => {
+        fs.readFile(database, "utf-8", (err, data) => { if (err){ console.error(err); return } resolve( JSON.parse(data) ) }) 
+      })
     })
 
     ipcMain.handle("openFileDialog", async () => {
@@ -54,12 +37,12 @@ app.whenReady().then(() => {
       return item
     })
     ipcMain.on("dataToSave", (_, data) => {
-      const realData = `${data.todos.join(":")}\n${data.workTime + " " + data.breakTime}\n${data.pl.join(" : ")}`
+      console.log(data)
+      const realData = JSON.stringify(data)
       fs.writeFile(database, realData, (error) => {
         if (error){ 
           console.error(error) 
         } else {
-          console.log(realData)
           win.destroy()
         }
       })

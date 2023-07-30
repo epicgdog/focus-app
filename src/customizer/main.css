@@ -1,0 +1,35 @@
+.settings-container{
+    width: 75%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-color);
+    color: white;
+    padding: 0.6rem;
+    font-family: var(--basic-font);
+}
+
+.settings-container h1{
+    display: inline-block;
+}
+
+.settings-container label{
+    display: block;
+    margin-bottom: 5px;
+}
+.close-settings{
+    float: right;
+    font-size: 0.8rem;
+}
+
+div.settings-modal{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+

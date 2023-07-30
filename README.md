@@ -1,7 +1,14 @@
 # Focus App
 - cool app designed to help u focus
-- meant to be very customizable
+- very customizable
 
 # TODO:
-- big one is to save the data once the app quits; don't save everytime something changed because it reloads the page 
-- figure out how to make each element drag and drop so easier to position
+- customizing each panel
+  - colors, backgrounds, font-families, font-sizes, 
+- animated background
+- save profiles
+- small details
+  - color of menu
+  - track amount of pomos done
+  - custom audio player
+- build and ship!

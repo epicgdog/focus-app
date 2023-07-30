@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from "react"
-import { useAtom } from "jotai"
-import { wt, bt } from "../index.js"
+import { useAtomValue } from "jotai"
+import { workTime, breakTime } from "../index.js"
 import "./main.css"
+import Movable from "../movable/main.jsx"
 
 const convertToClockTime = (seconds) => {
     // there are hours; so u have to do it a 3rd time
@@ -13,9 +14,9 @@ const convertToClockTime = (seconds) => {
 }
 
 export default function PomodoroTimer(){
-    const [workTime, setWorkTime] = useAtom(wt)
-    const [breakTime, setBreakTime] = useAtom(bt)
-    const [clock, setClock] = useState(workTime)
+    const wt = useAtomValue(workTime)
+    const bt = useAtomValue(breakTime)
+    const [clock, setClock] = useState(wt)
     const [clockMode, setClockMode] = useState("work")
     const [pause, setPause] = useState(true)
 
@@ -40,49 +41,29 @@ export default function PomodoroTimer(){
     useEffect(() => {
         if (clock >= 0){ return;} // if a timer hasn't expired, no need to change modes
         if (clockMode === "work"){
-            setClock(breakTime)
+            setClock(bt)
             setClockMode("break")
         } else if (clockMode === "break") {
-            setClock(workTime)
+            setClock(wt)
             setClockMode("work")
         }
     }, [clock])
 
+    useEffect( () => {
+        if (clock <= 0){ return; }
+        if (clockMode === "work"){
+            setClock(wt)
+        } else {
+            setClock(bt)
+        }
+    }, [wt, bt] )
+
     return(
         <>
-        <div className="pomo">
+        <Movable className="pomo">
             <h1> {displayTrueClock} </h1>
             <button className="startButton" onClick={ () => setPause((prev) => !prev) }> {pause ? "start": "stop"}</button>
-            <h3> Work: {workTime} Break: {breakTime}</h3>
-
-            <div className="pomo-settings">
-                <label> 
-                    Study Time 
-                    <input type="text" onKeyDown={(event) => { 
-                        if (event.key === "Enter" && parseInt(event.target.value)){
-                            setWorkTime( event.target.value )
-                            if ( clockMode === "work" ){
-                                setClock( parseInt(event.target.value) )
-                            }
-                            event.target.value = ""
-                        }
-                    }}/> 
-                </label>
-                <br></br>
-                <label> 
-                    Break Time 
-                    <input type="text" onKeyDown={(event) => { 
-                        if (event.key === "Enter" && parseInt(event.target.value)){
-                            setBreakTime( event.target.value )
-                            if ( clockMode === "break" ){
-                                setClock( parseInt(event.target.value) )
-                            }
-                            event.target.value = ""
-                        }
-                    }}/> 
-                </label>
-            </div>
-        </div>
+        </Movable>
         </>
     )
 

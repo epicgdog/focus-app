@@ -1,3 +1,1 @@
-eat pizza:drink cola:play roblox 😎:sleep
-180 90
-D:\Downloads\Eraserheads - Ang Huling El Bimbo.mp3 : D:\Downloads\clash-royale-laugh.mp3 : D:\Downloads\Holding Back The Years.mp3 : D:\Downloads\Maware Maware.mp3 : D:\Downloads\Deep Purple - Perfect Strangers (Official Video).mp3 : D:\Downloads\Afroman - Will You Help Me Repair My Door (OFFICIAL MUSIC VIDEO).mp3 : D:\Downloads\George Michael - Careless Whisper (Official Video).mp3
+{"todos":["hi there","i am cooler","than you"],"workTime":3600,"breakTime":600,"playlist":["D:\\Downloads\\Holding Back The Years.mp3","D:\\Downloads\\The Police - Every Breath You Take (Official Video).mp3","D:\\Downloads\\Sting - Englishman In New York.mp3"],"positions":{"pl":{"x":283,"y":85},"todo":{"x":694,"y":427},"pomo":{"x":693,"y":84}},"sizes":{"pl":{"x":409,"y":606},"pomo":{"x":392,"y":343},"todo":{"x":398,"y":263}}}
