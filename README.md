@@ -8,6 +8,11 @@
   - somehow save all of this
 - animated background
 - save profiles
+
+- design is bad
+  - padding + margins
+  - 
+
 - small details
   - color of menu
   - track amount of pomos done
