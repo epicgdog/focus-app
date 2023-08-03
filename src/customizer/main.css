@@ -1,31 +1,38 @@
 .settings-container{
-    width: 75%;
+    width: 17vw;
+    height: 100vh;
+    margin: 0;
+    z-index: 3;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     background-color: var(--bg-color);
-    color: white;
+    color: var(--main-color);
     padding: 0.6rem;
     font-family: var(--basic-font);
+    transition: transform 0.25s ease-in-out;
 }
 
 .settings-container h1{
+    font-family: var(--title-font);
     display: inline-block;
 }
 
 .settings-container label{
-    display: block;
-    margin-bottom: 5px;
+    padding: 11px;
 }
+
 .close-settings{
+    background: none;
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    color: var(--main-color);
     float: right;
     font-size: 0.8rem;
 }
 
 div.settings-modal{
     position: absolute;
-    z-index: 2;
     width: 100%;
     top: 0;
     left: 0;
@@ -33,3 +40,45 @@ div.settings-modal{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.customize-button{
+    background: none;
+    color: black;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    border-radius: 10px;
+    border: 3px solid black;
+
+}
+
+.positioning-button{
+    padding: 0.3rem 0.5rem;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--basic-font);
+    background-color: rgb(255, 245, 99);
+}
+
+.colors-button{
+    padding: 0.3rem 0.5rem;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--basic-font);
+    background-color: rgb(83, 235, 255);
+}
+
+.settings-container input[type="color"]{
+    float: right;
+}
+
+.finished-button{
+    background-color: rgb(119, 207, 119);
+    color: black;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: 3px solid black;
+    font-family: var(--basic-font);
+}

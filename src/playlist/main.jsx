@@ -22,6 +22,7 @@ export default function Playlist({ openFileDialog }){
 
     const playlistLength = pl.length
     useEffect(() => {
+        console.log("changed!")
         setPos( (prev) => Math.min(prev, playlistLength) )
         loadAndPlay()
     }, [pl])
@@ -38,7 +39,7 @@ export default function Playlist({ openFileDialog }){
                 <source src={pl[pos]} type="audio/mpeg" />
             </audio>
             <div className="pl-controls">
-                <button className="add-tracks" onClick={() => openFileDialog(setPl) }> + </button>
+                <button className="add-tracks" onClick={() => openFileDialog() }> + </button>
                 <button className="skip-to-previous" onClick={() => {
                     setPos( (prev) => prev - 1 < 0 ? playlistLength-1 : prev - 1 )
                     loadAndPlay(true)
@@ -54,7 +55,7 @@ export default function Playlist({ openFileDialog }){
             <ul>
             {
                 pl.map((val, index) => (
-                    val.length > 0 ? <Track music={val} key={index} index={index} current={pos} looped={loopCurrent}/> : ""
+                    val.length > 0 ? <Track music={val} key={index} index={index} current={pos} looped={loopCurrent} setPl={setPl}/> : ""
                 ))
             }
             </ul>

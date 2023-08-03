@@ -11,6 +11,7 @@ export const workTime = atom(data.workTime ?? 60 )
 export const breakTime = atom(data.breakTime ?? 900)
 export const positions = atom(data.positions ?? {})
 export const sizes = atom(data.sizes ?? {})
+export const styles = atom(data.styles ?? {})
 
 // global mouse X and Y
 export const mousePos = atom( {x:0, y:0} )

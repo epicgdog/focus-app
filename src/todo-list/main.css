@@ -1,9 +1,9 @@
 :root{
-    --bg-color: rgb(59, 59, 59);
+    --bg-color: #3b3b3b;
     --title-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --basic-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    --main-color: rgb(255, 255, 255);
-    --sec-color: rgb(99, 99, 99);
+    --main-color: #ffffff;
+    --sec-color: #636363;
 }
 
 div.todo{
@@ -22,7 +22,7 @@ div.todo h1{
 }
 
 div.todo-container {
-    background-color: rgb(99, 99, 99);
+    background-color: var(--sec-color);
     width: 75%;
     margin: auto;
     border-top-left-radius: 10px;
@@ -33,11 +33,11 @@ div.todo-container {
     padding: 0.25rem 0;
     border: none;
     width: 100%;
-    background-color: rgb(236, 236, 236);
 }
 
 div.items{
-    padding: 0.75rem;
+    margin: 0.75rem;
+    padding-top: 0.75rem;
 }
 
 div.items p{

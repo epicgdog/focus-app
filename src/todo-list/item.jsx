@@ -11,10 +11,7 @@ export default function TodoItem( { text, index } ){
                     <p>{text}</p>
                 </label>
                 <button onClick={ () => {
-                    setT( (prev) => {
-                        prev.splice(index, 1)
-                        return prev
-                    } )
+                    setT( (prev) => prev.filter((_, i) => i !== index) )
                 } }> X </button>
             </div>
         </>

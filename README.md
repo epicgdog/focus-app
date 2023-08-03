@@ -4,7 +4,8 @@
 
 # TODO:
 - customizing each panel
-  - colors, backgrounds, font-families, font-sizes, 
+  - font-families, font-sizes, 
+  - somehow save all of this
 - animated background
 - save profiles
 - small details

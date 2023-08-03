@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from "react"
-import { useAtomValue, useAtom, atom } from "jotai"
+import { useAtomValue, useAtom, atom, useSetAtom } from "jotai"
 import { mousePos, positions, sizes } from "../index.js"
 import "./main.css"
+import Editable from "../editable/main.jsx"
 
 export const isMovable = atom(false)
+export const movables = atom ({})
 
 export default function Movable({ className, children }){
     const pos = useAtomValue(mousePos)
     const canMove = useAtomValue(isMovable)
+    const setMovables = useSetAtom(movables)
 
     const [change, setChange] = useState(false)
     const [posData, setPosData] = useAtom(positions)
@@ -27,12 +30,12 @@ export default function Movable({ className, children }){
         resize: canMove ? "both" : "none",
         overflow: "auto",
         cursor: change ? "grab" : "default",
-        width: canMove? size[className] ?? "600px":currentSize.x,
-        height: canMove? size[className] ?? "100px":currentSize.y,
+        width: canMove? size[className] :currentSize.x,
+        height: canMove? size[className] :currentSize.y,
     }
 
     const buttonStyle = {
-        visibility: canMove ? "visible" : "hidden"
+        visibility: canMove ? "visible" : "hidden", 
     }
 
     useEffect(() => {
@@ -40,15 +43,14 @@ export default function Movable({ className, children }){
         const newSize = {x:div.current?.offsetWidth, y:div.current?.offsetHeight}
         setCurrentSize(newSize)
         setSize( (prev) => {
-            if (prev[className]){ 
-                prev[className].x = newSize.x
-                prev[className].y = newSize.y 
-            } else {
-                prev[className] = newSize
-            }
+            prev[className] = newSize
             return prev
         } )
     }, [div.current?.offsetWidth, div.current?.offsetHeight])
+
+    useEffect(() => {
+        setMovables( (prev) => {prev[className] = div.current; return prev} )
+    }, [div])
 
     const onMouseDown = () => {
         if (canMove){
@@ -63,24 +65,22 @@ export default function Movable({ className, children }){
             setChange(false) 
             setCurrentPos(newPos)
             setOffset(0)
-            return setPosData( (prev) => {
-                if (prev[className]){ 
-                    prev[className].x = newPos.x
-                    prev[className].y = newPos.y 
-                } else {
-                    prev[className] = newPos
-                }
+            setPosData( (prev) => {
+                prev[className] = newPos
                 return prev
             } )
         }
     }
+
     
     return( 
         <>
-        <div ref={div}className={className} style={style}> 
-                <button className = "move-panel-button" onMouseDown={onMouseDown} onMouseUp={onMouseUp}  style={buttonStyle}> {offset} </button>
-            {children} 
-        </div>
+        <Editable name={className + "-editable"} >
+            <div ref={div} className={className} style={style}> 
+                    <button className = "move-panel-button" onMouseDown={onMouseDown} onMouseUp={onMouseUp}  style={buttonStyle}> {offset} </button>
+                {children} 
+            </div>
+        </Editable>
         </>
     )
 }

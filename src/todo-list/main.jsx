@@ -2,8 +2,9 @@ import { useState } from "react"
 import Item from "./item.jsx"
 import "./main.css"
 import { useAtom, useAtomValue } from "jotai"
-import { todos, mousePos } from "../index.js"
+import { todos } from "../index.js"
 import Movable from "../movable/main.jsx"
+import Editable from "../editable/main.jsx"
 
 export default function Todolist( ){
     const [input, setInput] = useState("")
