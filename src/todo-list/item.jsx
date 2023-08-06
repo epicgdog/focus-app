@@ -1,4 +1,4 @@
-import { useRef } from "react"
+
 import { useAtom } from "jotai"
 import { todos } from "../index.js"
 export default function TodoItem( { text, index } ){
@@ -8,7 +8,7 @@ export default function TodoItem( { text, index } ){
             <div className="items">
                 <label>
                     <input type="checkbox" onChange={ () => {} } />
-                    <p>{text}</p>
+                    {text}
                 </label>
                 <button onClick={ () => {
                     setT( (prev) => prev.filter((_, i) => i !== index) )

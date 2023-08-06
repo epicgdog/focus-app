@@ -1,0 +1,16 @@
+.accordion-top{
+    width: 100%;
+}
+
+.accordion-top h1,.accordion-top h2, .accordion-top h3{
+    display: inline-block;
+    margin: 0;
+}
+
+.accordion-top button{
+    background: none;
+    color: var(--main-color);
+    border: none;
+    font-weight: bold;
+    margin: 0.5em;
+}

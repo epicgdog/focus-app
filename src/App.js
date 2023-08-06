@@ -3,7 +3,7 @@ import PomodoroTimer from "./pomo-timer/main.jsx"
 import Playlist from "./playlist/main.jsx"
 import Customizer from "./customizer/main.jsx"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
-import { mousePos, todos, workTime, breakTime, playlist, positions, sizes  } from "./index.js"
+import { mousePos, todos, workTime, breakTime, playlist, positions, sizes, variables  } from "./index.js"
 import { useEffect } from "react"
 import { HuePicker, AtomPicker } from "react-color"
 
@@ -22,7 +22,7 @@ function App() {
   const [pl, setPl] = useAtom(playlist)
   const pos = useAtomValue(positions)
   const sz = useAtomValue(sizes)
- 
+  const vars = useAtomValue(variables)
   const setMousePos = useSetAtom(mousePos)
 
   // big bug #1: BROOOOOO
@@ -39,9 +39,10 @@ function App() {
       breakTime: bt,
       playlist: pl,
       positions: pos,
-      sizes: sz
+      sizes: sz, 
+      variables: vars,
     }
-  }, [t, wt, bt, pl, pos, sz])
+  }, [t, wt, bt, pl, pos, sz, vars])
 
   const openFileDialog = async () => {
     const result = await window.comms.openFileDialog()
@@ -53,6 +54,10 @@ function App() {
       setMousePos({ x:event.clientX, y:event.clientY })
     }
   }, [])
+
+  for (const i in vars){
+    document.getElementById("root").style.setProperty(i, vars[i])
+  }
 
   return (
     <div className="App">

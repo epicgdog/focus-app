@@ -82,3 +82,23 @@ div.settings-modal{
     border: 3px solid black;
     font-family: var(--basic-font);
 }
+
+.fonts-container{
+    overflow: auto;
+    height: 200px
+}
+
+.fonts-container button{
+    width: 20%;
+    height: 15%;
+    text-overflow : ellipsis;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    white-space: nowrap;
+    background-color: rgb(101, 172, 101);
+    border: none;
+    margin: 10px 4px;
+    color: white;
+
+}

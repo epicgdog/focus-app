@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { atom, Provider } from "jotai"
+import { atom, Provider, useAtomValue } from "jotai"
 
 // conciser data management
 const data = await window.comms.getData()
@@ -12,6 +12,7 @@ export const breakTime = atom(data.breakTime ?? 900)
 export const positions = atom(data.positions ?? {})
 export const sizes = atom(data.sizes ?? {})
 export const styles = atom(data.styles ?? {})
+export const variables = atom(data.variables ?? {})
 
 // global mouse X and Y
 export const mousePos = atom( {x:0, y:0} )

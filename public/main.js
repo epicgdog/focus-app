@@ -18,6 +18,10 @@ app.whenReady().then(() => {
         }
     }) 
 
+    const emptyMenu = Menu.buildFromTemplate([]);
+    Menu.setApplicationMenu(emptyMenu);
+    win.setFullScreen(true)
+
 
     win.loadURL( 'http://localhost:3000' ) // for now idk how to package lol
     win.on("close", (e) => {
