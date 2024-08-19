@@ -1,20 +1,3 @@
 # Focus App
-- cool app designed to help u focus
-- very customizable
-
-# TODO:
-- customizing each panel
-  - font-families, font-sizes, 
-  - somehow save all of this
-- animated background
-- save profiles
-
-- design is bad
-  - padding + margins
-  - 
-
-- small details
-  - color of menu
-  - track amount of pomos done
-  - custom audio player
-- build and ship!
+- app with a built-in pomodoro timer, tracks, and a to-do list
+- very customizable with 50+ fonts, any color, ability to reposition each component, and adding background
